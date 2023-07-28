@@ -6,13 +6,13 @@ import TimeAgo from "./timeAgo";
 export default function PostList() {
   const posts = useSelector(selectAllPosts);
   const orderedPosts = posts
-    .slice()
+    ?.slice()
     .sort((a, b) => b.date.localeCompare(a.date));
   return (
     <div>
       <h2>Posts</h2>
       <div className="card-wrapper">
-        {orderedPosts.map((post) => {
+        {orderedPosts?.map((post) => {
           return (
             <article key={post.id} className="card">
               <h3>{post.title}</h3>

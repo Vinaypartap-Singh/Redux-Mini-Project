@@ -1,4 +1,5 @@
-import { createSlice, nanoid } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, nanoid } from "@reduxjs/toolkit";
+import { Axios } from "axios";
 import sub from "date-fns/sub";
 
 const initialState = [
@@ -19,13 +20,24 @@ const initialState = [
   },
 ];
 
+const POSTS_URL = `https://jsonplaceholder.typicode.com/posts`;
+
+export const fetchPosts = createAsyncThunk("posts/fetchPosts", async () => {
+  try {
+    const response = await Axios.get(POSTS_URL);
+    return response.data;
+  } catch (error) {
+    return error.message;
+  }
+});
+
 const postSlice = createSlice({
   name: "posts",
   initialState,
   reducers: {
     postAdded: {
       reducer(state, action) {
-        state.push(action.payload);
+        state.posts.push(action.payload);
       },
       prepare(title, description, userId) {
         return {
@@ -43,6 +55,6 @@ const postSlice = createSlice({
 });
 
 export const { postAdded } = postSlice.actions;
-export const selectAllPosts = (state) => state.post;
+export const selectAllPosts = (state) => state.posts?.post;
 
 export default postSlice.reducer;
