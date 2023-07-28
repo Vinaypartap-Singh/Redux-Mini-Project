@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { selectAllPosts } from "./postSlice";
-import timeAgo from "./timeAgo";
 import TimeAgo from "./timeAgo";
 
 export default function PostList() {
