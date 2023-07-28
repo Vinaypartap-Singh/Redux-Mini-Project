@@ -13,6 +13,7 @@ export default function PostList() {
             <article key={post.id} className="card">
               <h3>{post.title}</h3>
               <p>{post.description.substring(0, 50)}</p>
+              <p> Author: {post.userId} </p>
             </article>
           );
         })}

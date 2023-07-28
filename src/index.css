@@ -78,4 +78,5 @@ button:focus-visible {
 .card {
   border: 1px solid grey;
   width: 48%;
+  text-align: start;
 }
